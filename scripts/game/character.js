@@ -14,10 +14,15 @@ class Character extends Animate {
     this.y = this.starterY;
     this.jumpSpeed = 0;
     this.gravity = 3;
+    this.jumps = 0;
   }
 
   jump() {
-    this.jumpSpeed = -50;
+    this.jumps ++;
+    if(this.jumps <= 2) {
+      this.jumpSpeed = -30;
+      soundOfJump.play();
+    }
   }
 
   applyGravity() {
@@ -27,6 +32,7 @@ class Character extends Animate {
     //Impede que a gravidade leve a personagem para debaixo do chão
     if (this.y > this.starterY) {
       this.y = this.starterY;
+      this.jumps = 0;
     }
   }
 

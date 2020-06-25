@@ -1,4 +1,6 @@
-let scenarioImage;
+let scenarioImage1;
+let scenarioImage2;
+let scenarioImage3;
 let enemyImage;
 let characterImage;
 
@@ -6,8 +8,11 @@ let scenario;
 let character;
 let enemy;
 
+let gameOverImage;
+
 let soundOfJump;
 let soundOfGame;
+let soundOfGameOver;
 
 const enemyMatriz = [
   [0, 0],
@@ -39,49 +44,62 @@ const enemyMatriz = [
   [208, 626],
   [312, 626],
 ];
-const characterMatriz = [];
-// Matriz Dinamica
-for (let c = 0; c < 4; c++) {
-  for (let i = 0; i < 4; i++) {
-    if (i <= 3) {
-      characterMatriz.push([220 * i]);
-    }
-  }
-}
-for (let c = 0; c < 16; c++) {
-  let matrizNumber = 0;
-  if (c >= 4) {
-    matrizNumber = 270;
-  }
-  if (c >= 8) {
-    matrizNumber = 270 * 2;
-  }
-  if (c >= 12) {
-    matrizNumber = 270 * 3;
-  }
-  characterMatriz[c].push(matrizNumber);
-}
+const characterMatriz = [
+  [0, 0],
+  [0, 0],
+  [0, 0],
+  [108, 0],
+  [108, 0],
+  [108, 0],
+  [0, 140],
+  [0, 140],
+  [0, 140],
+  [108, 140],
+  [108, 140],
+  [108, 140],
+  [0, 280],
+  [0, 280],
+  [0, 280],
+  [108, 280],
+  [108, 280],
+  [108, 280],
+  [0, 420],
+  [0, 420],
+  [0, 420],
+  [108, 420],
+  [108, 420],
+  [108, 420],
+];
 
 function preload() {
-  scenarioImage = loadImage("/assets/scenario/forest.png");
-  characterImage = loadImage("/assets/character/running.png");
+  scenarioImage1 = loadImage("/assets/scenario/layers/far-buildings.png");
+  scenarioImage2 = loadImage("/assets/scenario/layers/back-buildings.png");
+  scenarioImage3 = loadImage("/assets/scenario/layers/foreground.png");
+
+  characterImage = loadImage("/assets/character/run.png");
   enemyImage = loadImage("/assets/enemies/droplets.png");
+
+  gameOverImage = loadImage("/assets/others/gameOver.png");
+
   soundOfGame = loadSound("/sounds/gameTrack.mp3");
   soundOfJump = loadSound("/sounds/jump.mp3");
+  soundOfGameOver = loadSound("/sounds/gameOver.mp3");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(30);
-  scenario = new Scenario(scenarioImage, 5);
+  scenario1 = new Scenario(scenarioImage1, 2);
+  scenario2 = new Scenario(scenarioImage2, 4);  
+  scenario3 = new Scenario(scenarioImage3, 8);
   character = new Character(
     characterMatriz,
     characterImage,
     0,
     135,
     135,
-    220,
-    270
+    108,
+    140
   );
   enemy = new Enemy(enemyMatriz, enemyImage, width - 52, 52, 52, 104, 104);
   // constructor(matriz, image, x, widthImg, heightImg, widthSprite, heightSprite)
@@ -92,13 +110,16 @@ function keyPressed() {
   // Se keypressed for igual ao espaço, faça pular
   if (keyCode == 32) {
     character.jump();
-    soundOfJump.play();
   }
 }
 
 function draw() {
-  scenario.show();
-  scenario.move();
+  scenario1.show();
+  scenario2.show();
+  scenario3.show();
+  scenario1.move();
+  scenario2.move();
+  scenario3.move();
 
   character.show();
   character.applyGravity();
@@ -107,8 +128,9 @@ function draw() {
   enemy.move();
 
   if (character.isColliding(enemy)) {
-    console.log("colidou");
     noLoop();
+    image(gameOverImage, 0, 0, width, height)
+    // soundOfGameOver.play();
   }
   //circle(x,y,tamanho)
   // circle(mouseX, mouseY, 200);
