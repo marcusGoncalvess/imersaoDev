@@ -3,24 +3,36 @@ class Character extends Animate {
     matriz,
     image,
     x,
+    yVar,
     widthImg,
     heightImg,
     widthSprite,
     heightSprite
   ) {
-    super(matriz, image, x, widthImg, heightImg, widthSprite, heightSprite);
+    super(
+      matriz,
+      image,
+      x,
+      yVar,
+      widthImg,
+      heightImg,
+      widthSprite,
+      heightSprite
+    );
 
-    this.starterY = height - this.widthImg;
+    this.yVar = yVar;
+    this.starterY = height - this.widthImg - this.yVar;
     this.y = this.starterY;
     this.jumpSpeed = 0;
     this.gravity = 3;
+    this.jumpHeight = -50;
     this.jumps = 0;
   }
 
   jump() {
-    this.jumps ++;
-    if(this.jumps <= 2) {
-      this.jumpSpeed = -30;
+    this.jumps++;
+    if (this.jumps <= 2) {
+      this.jumpSpeed = this.jumpHeight;
       soundOfJump.play();
     }
   }
@@ -38,6 +50,15 @@ class Character extends Animate {
 
   isColliding(enemy) {
     const precision = 0.7; //Diminuir o hitbox dos personagens
+    noFill();
+    rect(this.x, this.y, this.widthImg * precision, this.heightImg * precision);
+    rect(
+      enemy.x,
+      enemy.y,
+      enemy.widthImg * precision,
+      enemy.heightImg * precision
+    );
+
     const collision = collideRectRect(
       this.x,
       this.y,

@@ -3,17 +3,32 @@ class Enemy extends Animate {
     matriz,
     image,
     x,
+    yVar,
     widthImg,
     heightImg,
     widthSprite,
-    heightSprite
+    heightSprite,
+    velocity,
+    delay
   ) {
-    super(matriz, image, x, widthImg, heightImg, widthSprite, heightSprite);
+    super(
+      matriz,
+      image,
+      x,
+      yVar,
+      widthImg,
+      heightImg,
+      widthSprite,
+      heightSprite
+    );
+    this.velocity = velocity;
+    this.delay = delay;
+    this.x = width + this.delay;
   }
 
   move() {
-    this.x = this.x - 5;
-    if (this.x < -this.widthImg) {
+    this.x = this.x - this.velocity;
+    if (this.x < -this.widthImg - this.delay) {
       this.x = width;
     }
   }
