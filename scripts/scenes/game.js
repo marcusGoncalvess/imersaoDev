@@ -1,6 +1,24 @@
 class Game {
   constructor() {
-    this.currentEnemy = 0;
+    this.currentIndice = 0;
+    this.map = [
+      {
+        enemy: 0,
+        velocity: 10,
+      },
+      {
+        enemy: 1,
+        velocity: 10,
+      },
+      {
+        enemy: 2,
+        velocity: 30,
+      },
+      {
+        enemy: 3,
+        velocity: 10,
+      },
+    ];
   }
 
   setup() {
@@ -29,8 +47,7 @@ class Game {
       125,
       163,
       60,
-      10,
-      100
+      10
     );
     const trollEnemy = new Enemy(
       enemyMatriz,
@@ -41,8 +58,7 @@ class Game {
       125,
       96,
       61,
-      10,
-      100
+      10
     );
     const flyerEnemy = new Enemy(
       enemyMatriz,
@@ -53,8 +69,7 @@ class Game {
       200,
       257,
       104,
-      30,
-      100
+      30
     );
 
     const enemy4 = new Enemy(
@@ -66,8 +81,7 @@ class Game {
       125,
       93,
       60,
-      10,
-      100
+      10
     );
 
     life = new Life(3, 3);
@@ -99,30 +113,32 @@ class Game {
     life.draw();
     character.applyGravity();
 
-    const enemy = enemies[this.currentEnemy];
+    const currentLine = this.map[this.currentIndice];
+    const enemy = enemies[currentLine.enemy];
     const visibleEnemy = enemy.x < -enemy.widthImg;
+
+    enemy.velocity = currentLine.velocity;
     enemy.show();
     enemy.move();
 
     if (visibleEnemy) {
-      this.currentEnemy++;
-      if (this.currentEnemy > 3) {
-        this.currentEnemy = 0;
+      this.currentIndice++;
+      enemy.aparece();
+      if (this.currentIndice > this.map.length - 1) {
+        this.currentIndice = 0;
       }
-      enemy.velocity = parseInt(random(10, 30));
     }
 
     if (character.isColliding(enemy)) {
       life.lostLife();
       character.turnInvincible();
-      if(life.lifes === 0){
+      if (life.lifes === 0) {
         image(gameOverImage, 0, 0, width, height);
         noLoop();
       }
       // soundOfGame.stop();
       // soundOfGameOver.play();
     }
-
 
     //circle(x,y,tamanho)
     // circle(mouseX, mouseY, 200);

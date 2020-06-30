@@ -8,8 +8,7 @@ class Enemy extends Animate {
     heightImg,
     widthSprite,
     heightSprite,
-    velocity,
-    delay
+    velocity
   ) {
     super(
       matriz,
@@ -22,14 +21,14 @@ class Enemy extends Animate {
       heightSprite
     );
     this.velocity = velocity;
-    this.delay = delay;
-    this.x = width + this.delay;
+    this.x = width;
   }
 
   move() {
     this.x = this.x - this.velocity;
-    if (this.x < -this.widthImg - this.delay) {
-      this.x = width;
-    }
+  }
+
+  aparece() {
+    this.x = width;
   }
 }
