@@ -1,6 +1,6 @@
 function setup() {
   createCanvas(800, 600);
-  frameRate(30);
+  frameRate(20);
   game = new Game();
   telaInicial = new TelaInicial();
   game.setup();

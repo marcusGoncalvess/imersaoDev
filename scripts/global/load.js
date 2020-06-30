@@ -7,10 +7,12 @@ function preload() {
     scenarioImage3 = loadImage("/assets/scenario/layers/foreground.png");
   
     characterImage = loadImage("/assets/character/run.png");
-    enemyImage = loadImage("/assets/enemies/droplets.png");
-    trollEnemyImage = loadImage("/assets/enemies/troll.png");
-    flyerEnemyImage = loadImage("/assets/enemies/flyerDroplets.png");
-  
+    enemyImage = loadImage("/assets/enemies/v-police.png");
+    enemy2Image = loadImage("/assets/enemies/v-red.png");
+    enemy3Image = loadImage("/assets/enemies/v-truck.png")
+    enemy4Image = loadImage("/assets/enemies/v-yellow.png")
+    lifeImage = loadImage("/assets/others/heart.png")
+
     gameOverImage = loadImage("/assets/others/gameOver.png");
   
     soundOfGame = loadSound("/sounds/gameTrack.mp3");

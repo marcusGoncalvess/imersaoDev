@@ -12,6 +12,10 @@ body {
   height: 100%;
 }
 
+canvas {
+  display: block;
+}
+
 .botao-tela-inicial {
   font-family: 'Luckiest Guy', cursive;
   padding: 1rem 1.25rem;
