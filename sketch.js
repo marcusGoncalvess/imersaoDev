@@ -23,3 +23,8 @@ function draw() {
   }
   scenes[currentScene].draw();
 }
+function mouseClicked(event) {
+  if (currentScene === "game") {
+    character.jump();
+  }
+}
