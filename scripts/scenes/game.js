@@ -8,15 +8,35 @@ class Game {
       },
       {
         enemy: 1,
-        velocity: 10,
+        velocity: 15,
       },
       {
         enemy: 2,
-        velocity: 30,
+        velocity: 20,
       },
       {
         enemy: 3,
-        velocity: 10,
+        velocity: 15,
+      },
+      {
+        enemy: parseInt(random(0, 3)),
+        velocity: parseInt(random(15, 20)),
+      },
+      {
+        enemy: parseInt(random(0, 3)),
+        velocity: parseInt(random(15, 30)),
+      },
+      {
+        enemy: parseInt(random(0, 3)),
+        velocity: parseInt(random(15, 40)),
+      },
+      {
+        enemy: parseInt(random(0, 3)),
+        velocity: parseInt(random(20, 40)),
+      },
+      {
+        enemy: parseInt(random(0, 3)),
+        velocity: parseInt(random(30, 40)),
       },
     ];
   }
@@ -43,7 +63,7 @@ class Game {
       enemyImage,
       width - 52,
       20,
-      250,
+      200,
       125,
       163,
       60,
@@ -64,7 +84,7 @@ class Game {
       enemyMatriz,
       enemy3Image,
       width - 52,
-      50,
+      30,
       400,
       200,
       257,
@@ -132,12 +152,13 @@ class Game {
     if (character.isColliding(enemy)) {
       life.lostLife();
       character.turnInvincible();
+      soundOfDamage.play();
       if (life.lifes === 0) {
         image(gameOverImage, 0, 0, width, height);
+        soundOfGame.stop();
+        soundOfGameOver.play();
         noLoop();
       }
-      // soundOfGame.stop();
-      // soundOfGameOver.play();
     }
 
     //circle(x,y,tamanho)

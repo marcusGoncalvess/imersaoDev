@@ -1,6 +1,6 @@
 function preload() {
     telaInicialImage = loadImage("/assets/scenario/telaInicial.png")
-    fontTelaInicial = loadFont("/assets/others/fontTelaInicial.otf")
+    fontTelaInicial = loadFont("/assets/others/fontTelaInicial.ttf")
 
     scenarioImage1 = loadImage("/assets/scenario/layers/far-buildings.png");
     scenarioImage2 = loadImage("/assets/scenario/layers/back-buildings.png");
@@ -17,5 +17,6 @@ function preload() {
   
     soundOfGame = loadSound("/sounds/gameTrack.mp3");
     soundOfJump = loadSound("/sounds/jump.mp3");
+    soundOfDamage = loadSound("/sounds/damage.wav")
     soundOfGameOver = loadSound("/sounds/gameOver.mp3");
   }

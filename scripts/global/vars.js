@@ -29,6 +29,7 @@ let gameOverImage;
 let soundOfJump;
 let soundOfGame;
 let soundOfGameOver;
+let soundOfDamage
 
 let score;
 

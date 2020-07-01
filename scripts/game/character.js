@@ -24,7 +24,7 @@ class Character extends Animate {
     this.starterY = height - this.widthImg - this.yVar;
     this.y = this.starterY;
     this.jumpSpeed = 0;
-    this.gravity = 3;
+    this.gravity = 3.3;
     this.jumpHeight = -35;
     this.jumps = 0;
     this.invincible = false;
@@ -60,17 +60,7 @@ class Character extends Animate {
     if (this.invincible) {
       return false;
     }
-
-    const precision = 0.7; //Diminuir o hitbox dos personagens
-    noFill();
-    rect(this.x, this.y, this.widthImg * precision, this.heightImg * precision);
-    rect(
-      enemy.x,
-      enemy.y,
-      enemy.widthImg * precision,
-      enemy.heightImg * precision
-    );
-
+    const precision = 0.5; //Diminuir o hitbox dos personagens
     const collision = collideRectRect(
       this.x,
       this.y,

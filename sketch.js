@@ -9,7 +9,7 @@ function setup() {
     telaInicial,
   };
   managerButton = new ManagerButton("Iniciar", width/2,height/2);
-  // soundOfGame.loop();
+  soundOfGame.loop();
 }
 
 function keyPressed() {
